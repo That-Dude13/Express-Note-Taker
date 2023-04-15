@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
 const { clog } = require('./middleware/clog');
-const api = require('./routes/index.js');
-const api = require('./routes/notes.js');
+// const api = require('./routes/index.js');
+const apiRoutes = require('./routes/notes.js');
 
 const PORT = process.env.PORT || 3001;
 
@@ -14,7 +14,7 @@ app.use(clog);
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api);
+app.use('/api', apiRoutes);
 
 app.use(express.static('public'))
 
@@ -26,12 +26,12 @@ app.get('/', (req, res) =>
 
 
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/pages/notes.html'))
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/pages/index.html'))
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 app.listen(PORT, () =>
