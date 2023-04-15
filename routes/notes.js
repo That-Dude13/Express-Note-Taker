@@ -41,7 +41,7 @@ router.delete('/:note_id', (req, res) => {
     });
 });
 
-// POST Route for a new UX/UI note
+
 router.post('/', (req, res) => {
   console.log(req.body);
 
